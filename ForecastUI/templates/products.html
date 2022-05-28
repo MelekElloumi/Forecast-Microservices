@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Products</h1>
+    Today is 14 Mai 2022
+  <hr>
+  <table class="table table-striped" id="maintable">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Today's sales</th>
+      <th></th>
+      <th></th>
+    </tr>
+    {% for product in data %}
+    {{ product['name'].item }}
+      <tr>
+        <td>{{ product['_id'] }}</td>
+        <td>{{ product['name'] }}</td>
+        <td>{{ product['price'] }}</td>
+        <td>{{ product['sale'] }}</td>
+        <td><a href="/forecasts/product_id={{product['_id']}}" class="btn btn-default pull-right" >Forecast</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

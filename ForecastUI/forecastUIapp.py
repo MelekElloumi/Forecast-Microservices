@@ -1,9 +1,25 @@
 from flask import Flask, render_template, flash, redirect, url_for, session, request, json
 from pymongo import MongoClient
+import requests
 
 def create_app(name):
 
     app = Flask(name)
+
+    @app.route('/')
+    def index():
+        return render_template('home.html')
+
+    @app.route('/planning')
+    def planning():
+        return render_template('planning.html')
+
+    @app.route('/products')
+    def products():
+        res = requests.get('http://localhost:5001/products')
+        data= json.loads(res.text)
+        print(data)
+        return render_template('products.html',data=data)
 
     @app.route('/login', methods=['GET'])
     def login():
@@ -34,7 +50,7 @@ def create_app(name):
 def main( ):
     app = create_app(__name__)
     app.secret_key = 'secret123'
-    app.run(port=5000)
+    app.run(port=5002)
 
 if __name__ == '__main__':
     main()
