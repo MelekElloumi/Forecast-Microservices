@@ -37,6 +37,13 @@ def create_app(name):
                 return render_template('login.html')
         return wrap
 
+    @app.route('/logout')
+    @is_logged_in
+    def logout():
+        session.clear()
+        flash('Logged out successfully', 'success')
+        return redirect(url_for('index'))
+
     @app.route('/planning')
     @is_logged_in
     def planning():
