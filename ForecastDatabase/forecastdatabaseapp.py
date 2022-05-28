@@ -13,15 +13,18 @@ def create_app(name):
         client = MongoClient(CONNECTION_STRING)
         db = client["Architecture_MS_Security"]
         col = db["Users"]
-        user=col.find({"username":username})
+        user=col.find_one({"username":username})
         response={}
-        if (user.count()):
+        if (user!=None):
             if password==user["password"]:
                 response["loggedin"]=True
+                response["message"] = "Logged in successfully"
             else:
                 response["loggedin"]=False
+                response["error"] = "Uncorrect password"
         else:
             response["loggedin"]=False
+            response["error"] = "User not found"
         return response
 
     return app
