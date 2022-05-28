@@ -14,9 +14,9 @@ def create_app(name):
         response=jsonify(list(products))
         return response
 
-    @app.route('/forecasts', methods=['GET'])
-    def forecasts():
-        product_id = request.args.get('product_id', default=0, type=int)
+    @app.route('/forecasts/<int:product_id>', methods=['GET'])
+    def forecasts(product_id):
+        #product_id = request.args.get('product_id', default=0, type=int)
         client = MongoClient("mongodb://localhost:27017")
         db = client["Architecture_MS_Forecast_Database"]
         col = db["Forecasts"]

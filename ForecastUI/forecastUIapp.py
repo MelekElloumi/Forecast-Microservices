@@ -18,30 +18,17 @@ def create_app(name):
     def products():
         res = requests.get('http://localhost:5001/products')
         data= json.loads(res.text)
-        print(data)
         return render_template('products.html',data=data)
 
-    @app.route('/login', methods=['GET'])
-    def login():
-        username = request.args.get('username', default="none", type=str)
-        password = request.args.get('password', default='none', type=str)
-        CONNECTION_STRING = "mongodb://localhost:27017"
-        client = MongoClient(CONNECTION_STRING)
-        db = client["Architecture_MS_Security"]
-        col = db["Users"]
-        user=col.find_one({"username":username})
-        response={}
-        if (user!=None):
-            if password==user["password"]:
-                response["loggedin"]=True
-                response["message"] = "Logged in successfully"
-            else:
-                response["loggedin"]=False
-                response["error"] = "Uncorrect password"
-        else:
-            response["loggedin"]=False
-            response["error"] = "User not found"
-        return response
+    @app.route('/forecasts/<int:product_id>')
+    def forecasts(product_id):
+        #product_id = request.args.get('product_id', default=0, type=int)
+        res = requests.get(f'http://localhost:5001/forecasts/{product_id}')
+        data = json.loads(res.text)
+        labels=[forecast['date'] for forecast in data]
+        values= [forecast['sales'] for forecast in data]
+        return render_template('forecasts.html', labels=labels, values=values)
+
 
     return app
 

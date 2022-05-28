@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'layout.html' %}
 
-</body>
-</html>
+{% block body %}
+  <h1>Forecasts</h1>
+    Today is 14 Mai 2022
+    <a href="/products" class="btn btn-primary btn-lg" >Return to Products</a>
+  <hr>
+  <canvas id="lineChart" width="900" height="400"></canvas>
+    <script>
+        var ctx = document.getElementById("lineChart").getContext("2d");
+        var lineChart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: {{labels | safe}},
+            datasets: [
+              {
+                label: "Future daily forecasts",
+                data: {{values | safe}},
+                fill: false,
+                borderColor: "rgb(75,192,192)",
+                lineTension: 0.4
+              }
+            ]
+          },
+        options: {
+            responsive: false
+        }
+        }
+        })
+    </script>
+{% endblock %}

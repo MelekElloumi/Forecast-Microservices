@@ -20,7 +20,7 @@
         <td>{{ product['name'] }}</td>
         <td>{{ product['price'] }}</td>
         <td>{{ product['sale'] }}</td>
-        <td><a href="/forecasts/product_id={{product['_id']}}" class="btn btn-default pull-right" >Forecast</a></td>
+        <td><a href="/forecasts/{{product['_id']}}" class="btn btn-default pull-right" >Forecast</a></td>
       </tr>
     {% endfor %}
   </table>
