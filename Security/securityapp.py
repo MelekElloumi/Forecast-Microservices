@@ -9,8 +9,7 @@ def create_app(name):
     def login():
         username = request.args.get('username', default="none", type=str)
         password = request.args.get('password', default='none', type=str)
-        CONNECTION_STRING = "mongodb://localhost:27017"
-        client = MongoClient(CONNECTION_STRING)
+        client = MongoClient("mongodb://localhost:27017")
         db = client["Architecture_MS_Security"]
         col = db["Users"]
         user=col.find_one({"username":username})

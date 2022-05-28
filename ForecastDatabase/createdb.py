@@ -2,8 +2,7 @@ from pymongo import MongoClient
 import json
 
 def initiate_database():
-    CONNECTION_STRING = "mongodb://localhost:27017"
-    client = MongoClient(CONNECTION_STRING)
+    client = MongoClient("mongodb://localhost:27017")
     db = client["Architecture_MS_Forecast_Database"]
     col = db["Products"]
 

@@ -1,8 +1,7 @@
 from pymongo import MongoClient
 
 def initiate_database():
-    CONNECTION_STRING = "mongodb://localhost:27017"
-    client = MongoClient(CONNECTION_STRING)
+    client = MongoClient("mongodb://localhost:27017")
     db = client["Architecture_MS_Security"]
     col = db["Users"]
     data=[
