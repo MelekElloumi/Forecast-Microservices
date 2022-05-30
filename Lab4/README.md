@@ -40,7 +40,7 @@ would react to and execute their code.
 - This enables automation even more by making the serverless functions rely on a broker.
 - The process time can be improved by deploying more brokers.
 
-
+### Structure
 - To deploy serverless microservices, we can use AWS lambda or Azure functions.
 - We can use Redis Streams as a broker for events between microservices.
 - This image show the architectural structure of the project.
