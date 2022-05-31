@@ -1,4 +1,4 @@
-# Software architecture lab 4: Loan management
+# Software architecture lab 5: Online shopping backend
 This is lab 5 of [software architecture lab](https://insatunisia.github.io/TP-ArchLog/tp5/)
 - work by Melek Elloumi
 
